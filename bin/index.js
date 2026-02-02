@@ -23,12 +23,12 @@ async function main() {
     case '-h':
     default:
       console.log(`
-@diesel/ai - Scaffold agent-tasking templates
+@jsedlak/ai - Scaffold agent-tasking templates
 
 Usage:
-  npx @diesel/ai init    Initialize a new project with the template
-  npx @diesel/ai -v      Show version
-  npx @diesel/ai -h      Show this help
+  npx @jsedlak/ai init    Initialize a new project with the template
+  npx @jsedlak/ai -v      Show version
+  npx @jsedlak/ai -h      Show this help
 `);
       break;
   }

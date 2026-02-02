@@ -1,53 +1,38 @@
-import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const REPO = 'jsedlak/agent-tasking';
-const EXCLUDE_FILES = ['README.md'];
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export async function init() {
   const cwd = process.cwd();
+  const contentDir = path.join(__dirname, '..', 'content');
 
-  // Check if directory has files (other than common ones)
-  const existingFiles = fs.readdirSync(cwd).filter(f =>
-    !['.git', '.DS_Store', 'node_modules'].includes(f)
-  );
+  console.log('Initializing project...');
 
-  if (existingFiles.length > 0) {
-    console.log('Warning: Current directory is not empty.');
-    console.log('Files found:', existingFiles.join(', '));
-    console.log('');
-  }
+  // Copy all contents from content/ to current directory
+  copyDir(contentDir, cwd);
 
-  console.log('Downloading template from', REPO, '...');
+  console.log('');
+  console.log('Done! Template files initialized.');
+}
 
-  try {
-    // Use degit to clone without git history
-    execSync(`npx --yes degit ${REPO} . --force`, {
-      stdio: 'inherit',
-      cwd
-    });
+function copyDir(src, dest) {
+  const entries = fs.readdirSync(src, { withFileTypes: true });
 
-    // Remove excluded files
-    for (const file of EXCLUDE_FILES) {
-      const filePath = path.join(cwd, file);
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-        console.log(`Removed ${file}`);
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+
+    if (entry.isDirectory()) {
+      if (!fs.existsSync(destPath)) {
+        fs.mkdirSync(destPath, { recursive: true });
       }
+      copyDir(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+      console.log(`  Created ${path.relative(process.cwd(), destPath)}`);
     }
-
-    console.log('');
-    console.log('Done! Template initialized successfully.');
-    console.log('');
-    console.log('Next steps:');
-    console.log('  1. Review the files added to your project');
-    console.log('  2. Install dependencies if needed');
-
-  } catch (error) {
-    if (error.message.includes('degit')) {
-      console.error('Failed to download template. Make sure you have internet access.');
-    }
-    throw error;
   }
 }

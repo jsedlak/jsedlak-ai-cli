@@ -1,5 +1,5 @@
 {
-  "name": "@diesel/ai",
+  "name": "@jsedlak/ai",
   "version": "0.0.1",
   "description": "CLI to scaffold agent-tasking templates",
   "type": "module",
@@ -8,7 +8,8 @@
   },
   "files": [
     "bin",
-    "src"
+    "src",
+    "content"
   ],
   "keywords": [
     "cli",
