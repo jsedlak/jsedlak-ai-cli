@@ -1,0 +1,29 @@
+{
+  "name": "@diesel/ai",
+  "version": "0.0.1",
+  "description": "CLI to scaffold agent-tasking templates",
+  "type": "module",
+  "bin": {
+    "diesel-ai": "./bin/index.js"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "keywords": [
+    "cli",
+    "scaffold",
+    "ai",
+    "agent",
+    "tasking"
+  ],
+  "author": "johnsedlak",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsedlak/agent-tasking"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
