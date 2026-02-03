@@ -66,6 +66,10 @@ npx @jsedlak/ai -h       # Show help
 
 - Node.js 18 or higher
 
+## Acknowledgments
+
+This project is based on the task-driven development workflow patterns from [ai-dev-tasks](https://github.com/snarktank/ai-dev-tasks) by snarktank.
+
 ## License
 
-MIT
+Apache-2.0

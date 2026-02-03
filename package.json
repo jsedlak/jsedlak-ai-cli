@@ -1,6 +1,6 @@
 {
   "name": "@jsedlak/ai",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "CLI to scaffold agent-tasking templates",
   "type": "module",
   "bin": {
@@ -19,7 +19,7 @@
     "tasking"
   ],
   "author": "johnsedlak",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/jsedlak/agent-tasking"

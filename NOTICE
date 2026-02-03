@@ -1,0 +1,9 @@
+@jsedlak/ai
+Copyright 2026 John Sedlak
+
+This product includes software derived from ai-dev-tasks
+(https://github.com/snarktank/ai-dev-tasks), which is licensed under the
+Apache License, Version 2.0.
+
+The template files in the content/ directory are based on and inspired by
+the task-driven development workflow patterns from the ai-dev-tasks project.
