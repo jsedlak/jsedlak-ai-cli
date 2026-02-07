@@ -1,6 +1,6 @@
 {
   "name": "@jsedlak/ai",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "CLI to scaffold agent-tasking templates",
   "type": "module",
   "scripts": {
