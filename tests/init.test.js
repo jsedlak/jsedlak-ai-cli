@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import { init, copyDir, getDefaultContentDir } from '../src/init.js';
+import { init, copyDir, getDefaultContentDir } from '../commands/init.js';
 
 describe('init command', () => {
   let tmpDir;

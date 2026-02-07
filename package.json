@@ -12,7 +12,6 @@
   "files": [
     "bin",
     "commands",
-    "src",
     "content"
   ],
   "keywords": [
