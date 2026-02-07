@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -7,6 +7,7 @@ import {
   getAvailableSkills,
   addSkill,
   removeSkill,
+  promptSkillSelection,
 } from '../commands/skill.js';
 
 describe('skill command', () => {
@@ -140,6 +141,16 @@ describe('skill command', () => {
       removeSkill('nonexistent/skill', projectDir);
       expect(process.exitCode).toBe(1);
       process.exitCode = originalExitCode;
+    });
+  });
+
+  describe('promptSkillSelection', () => {
+    it('should return null when no skills are available', async () => {
+      const emptyDir = path.join(tmpDir, 'empty-skills');
+      fs.mkdirSync(emptyDir, { recursive: true });
+
+      const result = await promptSkillSelection(emptyDir);
+      expect(result).toBeNull();
     });
   });
 });

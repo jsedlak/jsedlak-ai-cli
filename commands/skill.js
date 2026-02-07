@@ -1,4 +1,5 @@
 import { Command } from 'commander';
+import { search } from '@inquirer/prompts';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -101,11 +102,35 @@ function copySkillDir(src, dest, rootDest) {
 const skillCommand = new Command('skill')
   .description('Manage Claude skills');
 
+export async function promptSkillSelection(skillsDir = getSkillsDir()) {
+  const skills = getAvailableSkills(skillsDir);
+  if (skills.length === 0) {
+    console.log('No skills available.');
+    return null;
+  }
+
+  const selected = await search({
+    message: 'Select a skill to add:',
+    source: (input) => {
+      const term = (input || '').toLowerCase();
+      return skills
+        .filter((s) => s.toLowerCase().includes(term))
+        .map((s) => ({ name: s, value: s }));
+    },
+  });
+
+  return selected;
+}
+
 skillCommand
   .command('add')
   .description('Add a skill to the current project')
-  .argument('<name>', 'skill name (e.g. dotnet/orleans)')
+  .argument('[name]', 'skill name (e.g. dotnet/orleans)')
   .action(async (name) => {
+    if (!name) {
+      name = await promptSkillSelection();
+      if (!name) return;
+    }
     addSkill(name);
   });
 
