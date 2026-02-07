@@ -5,20 +5,20 @@ import { dirname } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export async function init() {
-  const cwd = process.cwd();
-  const contentDir = path.join(__dirname, '..', 'content');
+export function getDefaultContentDir() {
+  return path.join(__dirname, '..', 'content');
+}
 
+export async function init(destDir = process.cwd(), contentDir = getDefaultContentDir()) {
   console.log('Initializing project...');
 
-  // Copy all contents from content/ to current directory
-  copyDir(contentDir, cwd);
+  copyDir(contentDir, destDir);
 
   console.log('');
   console.log('Done! Template files initialized.');
 }
 
-function copyDir(src, dest) {
+export function copyDir(src, dest) {
   const entries = fs.readdirSync(src, { withFileTypes: true });
 
   for (const entry of entries) {
@@ -32,7 +32,7 @@ function copyDir(src, dest) {
       copyDir(srcPath, destPath);
     } else {
       fs.copyFileSync(srcPath, destPath);
-      console.log(`  Created ${path.relative(process.cwd(), destPath)}`);
+      console.log(`  Created ${path.relative(dest, destPath)}`);
     }
   }
 }
