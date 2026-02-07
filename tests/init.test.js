@@ -80,10 +80,9 @@ describe('init command', () => {
       expect(fs.existsSync(path.join(tmpDir, '.ai', 'generate-tasks.md'))).toBe(true);
       expect(fs.existsSync(path.join(tmpDir, '.ai', 'process-tasks.md'))).toBe(true);
 
-      // Verify .claude directory was copied
+      // Verify .claude/commands was copied (skills are now managed separately)
       expect(fs.existsSync(path.join(tmpDir, '.claude'))).toBe(true);
       expect(fs.existsSync(path.join(tmpDir, '.claude', 'commands'))).toBe(true);
-      expect(fs.existsSync(path.join(tmpDir, '.claude', 'skills', 'orleans'))).toBe(true);
     });
 
     it('should copy file contents accurately', async () => {

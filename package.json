@@ -12,7 +12,8 @@
   "files": [
     "bin",
     "commands",
-    "content"
+    "content",
+    "skills"
   ],
   "keywords": [
     "cli",
