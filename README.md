@@ -57,10 +57,41 @@ Work through tasks one sub-task at a time. The AI:
 ## CLI Commands
 
 ```bash
-npx @jsedlak/ai init     # Initialize project with template files
-npx @jsedlak/ai -v       # Show version
-npx @jsedlak/ai -h       # Show help
+npx @jsedlak/ai init               # Initialize project with template files
+npx @jsedlak/ai skill add <name>   # Add a skill to the current project
+npx @jsedlak/ai skill remove <name> # Remove a skill from the current project
+npx @jsedlak/ai skill list         # List all available skills
+npx @jsedlak/ai -v                 # Show version
+npx @jsedlak/ai -h                 # Show help
 ```
+
+### Skills
+
+Skills are domain-specific knowledge packages that provide AI agents with specialized context for development tasks. Each skill contains documentation and examples that get installed into your project's `.claude/skills/` directory.
+
+#### Adding a Skill
+
+```bash
+npx @jsedlak/ai skill add dotnet/orleans
+```
+
+This copies the skill's files into `.claude/skills/dotnet/orleans/`, making them available as context for AI coding agents.
+
+#### Removing a Skill
+
+```bash
+npx @jsedlak/ai skill remove dotnet/orleans
+```
+
+This removes the skill from `.claude/skills/` and cleans up any empty parent directories.
+
+#### Listing Available Skills
+
+```bash
+npx @jsedlak/ai skill list
+```
+
+Displays all built-in skills that can be added to your project.
 
 ## Requirements
 
